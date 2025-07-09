@@ -1,0 +1,63 @@
+# Python cache & artifacts
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pdb
+*.egg-info/
+*.egg
+*.log
+
+# Virtual environments
+venv/
+env/
+.venv/
+ENV/
+.Python
+
+# Pytest cache
+.pytest_cache/
+.cache/
+htmlcov/
+
+# VS Code / JetBrains IDE configs
+.vscode/
+.idea/
+
+# OS-specific
+.DS_Store
+Thumbs.db
+
+# Test reports & screenshots
+reports/
+screenshots/
+logs/
+*.html
+
+# Playwright artifacts
+playwright-report/
+test-results/
+
+# Secrets or credentials (if used)
+config/secrets.yaml
+
+# Jupyter Notebooks (if used)
+*.ipynb
+
+# GitHub Actions artifacts (optional)
+*.coverage
+coverage.xml
+*.tar.gz
+*.zip
+
+# Coverage tools
+coverage/
+.tox/
+.nox/
+dist/
+build/
+
+# Miscellaneous
+*.bak
+*.swp
+*.tmp
