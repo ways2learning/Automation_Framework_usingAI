@@ -17,4 +17,4 @@ class CartPage(BasePage):
 
     def is_cart_empty_text_present(self):
         # This assumes the cart empty message has a unique text
-        return self.page.locator("//*[contains(text(), 'Cart is empty')]").is_visible()
+        return self.page.locator("//*[contains(text(), 'Cart is empty!')]").is_visible()

@@ -28,7 +28,7 @@ def pytest_addoption(parser):
 def browser_context(config, pytestconfig):
     with sync_playwright() as p:
         headed = pytestconfig.getoption("headed")
-        browser = p.chromium.launch(headless=not headed)
+        browser = p.chromium.launch(headless=False)
         width, height = config.env_config['resolutions'][0]
         context = browser.new_context(
             viewport={"width": width, "height": height}
