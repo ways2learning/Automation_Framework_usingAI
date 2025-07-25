@@ -48,10 +48,7 @@ jobs:
           pytest -m web --tb=short --disable-warnings --html=web_report.html --self-contained-html
 
       - name: Upload HTML reports
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
-          name: pytest-reports
-          path: |
-            api_report.html
-            web_report.html
-          retention-days: 5
+          name: pytest-html-reports
+          path: reports/
