@@ -47,7 +47,8 @@ jobs:
           source .venv/bin/activate
           pytest -m web --tb=short --disable-warnings --html=web_report.html --self-contained-html
 
-      - name: Upload HTML reports
+      - name: Upload Test reports
+        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: pytest-html-reports
