@@ -1,4 +1,4 @@
-name: Run Web & API Tests on PR
+name: Run Web & API Tests on PR Merge
 
 on:
   pull_request:
