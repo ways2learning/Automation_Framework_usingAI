@@ -1,4 +1,4 @@
-name: Run Automation Tests on Pull Request
+name: Run Automation Tests on Pull Request Merge
 
 on:
   pull_request:
