@@ -1,0 +1,58 @@
+name: Run Web & API Tests on PR Merge will trigger tests on CI
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  run-tests:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        python-version: [3.10]
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          python -m venv .venv
+          source .venv/bin/activate
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          # It's a good practice to ensure pytest-html is in requirements.txt.
+          # If not, you can install it here:
+          # pip install pytest-html
+
+      - name: Install Playwright Browsers
+        run: |
+          source .venv/bin/activate
+          playwright install --with-deps
+
+      - name: Run API Tests and generate HTML report
+        run: |
+          source .venv/bin/activate
+          pytest -m api --tb=short --disable-warnings --html=api_report.html --self-contained-html
+
+      - name: Run Web Tests (Headless) and generate HTML report
+        run: |
+          source .venv/bin/activate
+          pytest -m web --tb=short --disable-warnings --html=web_report.html --self-contained-html
+
+      - name: Upload HTML Test reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: pytest-html-reports
+          path: |
+            api_report.html
+            web_report.html
+            retention-days: 5
